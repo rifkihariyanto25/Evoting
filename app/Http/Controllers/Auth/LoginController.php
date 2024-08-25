@@ -24,4 +24,11 @@ class LoginController extends Controller
 
         return redirect()->back()->withErrors(['email' => 'Invalid credentials.']);
     }
+
+    public function destroy()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
 }

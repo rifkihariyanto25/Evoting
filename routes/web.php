@@ -12,6 +12,7 @@ Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], functi
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
 
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
+
+Route::post('/logout', [LoginController::class, 'destroy'])->name('logout');
