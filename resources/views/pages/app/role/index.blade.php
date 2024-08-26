@@ -4,9 +4,12 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-12">
-            <a href="{{ route('app.role.create') }}" class="btn btn-primary mb-3">Add Role</a>
-        </div>
+
+        @can('role-create')
+            <div class="col-md-12">
+                <a href="{{ route('app.role.create') }}" class="btn btn-primary mb-3">Add Role</a>
+            </div>
+        @endcan
 
         <div class="col-md-12">
             @include('includes.alert')
@@ -34,17 +37,22 @@
                                         <td>{{ $role->name }}</td>
                                         <td>{{ $role->permissions->count() }} Permission</td>
                                         <td>
-                                            <a href="{{ route('app.role.edit', $role->id) }}"
-                                                class="btn btn-warning">Edit</a>
+
+                                            @can('role-update')
+                                                <a href="{{ route('app.role.edit', $role->id) }}"
+                                                    class="btn btn-warning">Edit</a>
+                                            @endcan
 
                                             <a href="{{ route('app.role.show', $role->id) }}" class="btn btn-info">Show</a>
 
-                                            <form action="{{ route('app.role.destroy', $role->id) }}" method="POST"
-                                                class="d-inline">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger">Delete</button>
-                                            </form>
+                                            @can('role-delete')
+                                                <form action="{{ route('app.role.destroy', $role->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

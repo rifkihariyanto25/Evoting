@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleUpdateRequest extends FormRequest
+class UserUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -14,9 +14,9 @@ class RoleUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255|unique:roles,name,' . $this->route('role'),
-            'permission' => 'required|array|min:1',
-            'permission.*' => 'exists:permissions,name',
+            'email' => 'required|email|unique:users,email,' . $this->route('user'),
+            'password' => 'nullable|min:8',
+            'role' => 'required|exists:roles,name',
         ];
     }
 
@@ -28,8 +28,9 @@ class RoleUpdateRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'name' => 'Name',
-            'permissions' => 'Permissions',
+            'email' => 'Email',
+            'password' => 'Password',
+            'role' => 'Role',
         ];
     }
 
@@ -42,9 +43,9 @@ class RoleUpdateRequest extends FormRequest
     {
         return [
             'required' => 'The :attribute field is required.',
-            'string' => 'The :attribute must be a string.',
+            'email' => 'The :attribute must be a valid email address.',
             'unique' => 'The :attribute has already been taken.',
-            'permission.min' => 'The :attribute field is required.',
+            'min' => 'The :attribute must be at least 8 characters.',
             'exists' => 'The selected :attribute is invalid.',
         ];
     }
