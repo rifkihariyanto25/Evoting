@@ -12,35 +12,43 @@
     <hr class="sidebar-divider my-0">
 
     @can('dashboard-view')
-        <li class="nav-item {{ request()->is('app/dashboard') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('app.dashboard') }}">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
+    <li class="nav-item {{ request()->is('app/dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('app.dashboard') }}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+    @endcan
+
+    @can('candidate-view')
+    <li class="nav-item {{ request()->is('app/candidate') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('app.candidate.index') }}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Dashboard</span></a>
+    </li>
     @endcan
 
     @canany(['user-view', 'role-view'])
-        <li class="nav-item {{ request()->is('app/users*') || request()->is('app/roles*') ? 'active' : '' }}">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUserManagement"
-                aria-expanded="true" aria-controls="collapseUserManagement">
-                <i class="fas fa-fw fa-users"></i>
-                <span>User Management</span>
-            </a>
-            <div id="collapseUserManagement"
-                class="collapse {{ request()->is('app/user*') || request()->is('app/role*') ? 'show' : '' }}"
-                aria-labelledby="headingUserManagement" data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    @can('user-view')
-                        <a class="collapse-item {{ request()->is('app/user*') ? 'active' : '' }}"
-                            href="{{ route('app.user.index') }}">User</a>
-                    @endcan
-                    @can('role-view')
-                        <a class="collapse-item {{ request()->is('app/role*') ? 'active' : '' }}"
-                            href="{{ route('app.role.index') }}">Role</a>
-                    @endcan
-                </div>
+    <li class="nav-item {{ request()->is('app/users*') || request()->is('app/roles*') ? 'active' : '' }}">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUserManagement"
+            aria-expanded="true" aria-controls="collapseUserManagement">
+            <i class="fas fa-fw fa-users"></i>
+            <span>User Management</span>
+        </a>
+        <div id="collapseUserManagement"
+            class="collapse {{ request()->is('app/user*') || request()->is('app/role*') ? 'show' : '' }}"
+            aria-labelledby="headingUserManagement" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                @can('user-view')
+                <a class="collapse-item {{ request()->is('app/user*') ? 'active' : '' }}"
+                    href="{{ route('app.user.index') }}">User</a>
+                @endcan
+                @can('role-view')
+                <a class="collapse-item {{ request()->is('app/role*') ? 'active' : '' }}"
+                    href="{{ route('app.role.index') }}">Role</a>
+                @endcan
             </div>
-        </li>
+        </div>
+    </li>
     @endcanany
 
 

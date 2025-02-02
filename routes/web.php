@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Web\CandidateController;
 use App\Http\Controllers\Web\DashboardController;
 use App\Http\Controllers\Web\RoleController;
 use App\Http\Controllers\Web\UserController;
@@ -12,6 +13,9 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'app', 'as' => 'app.', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    // tidak perlu mendefinisikan satu satu
+    Route::resource('candidate', CandidateController::class);
 
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);
