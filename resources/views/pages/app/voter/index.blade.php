@@ -27,7 +27,7 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>NIM</th>
+                                <!-- <th>NIM</th> -->
                                 <th>Action</th>
 
                             </tr>
@@ -38,7 +38,7 @@
                             <tr>
                                 <td>{{ $voter->name }}</td>
                                 <td>{{ $voter->user->email }}</td>
-                                <td>{{ $voter->nim }}</td>
+                                <!-- <td>{{ $voter->nim }}</td> -->
                                 <td>
 
                                     @can('voter-update')

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VoterStoreRequest;
+use App\Models\User;
 use App\Models\Voter;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -36,15 +38,32 @@ class VoterController extends Controller implements HasMiddleware
      */
     public function create()
     {
-        //
+        return view('pages.app.voter.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(VoterStoreRequest $request)
     {
-        //
+        try {
+
+            $user = User::create([
+                'email' => $request->email,
+                // 'nim' => $request->nim,
+                'password' => bcrypt($request->password),
+            ]);
+
+            $user->assignRole('voter');
+            $user->voter()->create([
+                'name' => $request->name
+            ]);
+
+
+            return redirect()->route('app.voter.index')->with('success', 'Voter Berhasil Ditambahkan');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Failed to create Voter: ' . $e->getMessage()]);
+        }
     }
 
     /**

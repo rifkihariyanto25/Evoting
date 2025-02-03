@@ -12,7 +12,7 @@ class Voter extends Model
 
     protected $fillable = [
         'user_id',
-        'nim',
+        // 'nim',
         'name'
     ];
 
