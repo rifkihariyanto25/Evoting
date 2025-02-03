@@ -20,7 +20,7 @@
     @endcan
 
     @can('candidate-view')
-    <li class="nav-item {{ request()->is('app/candidate') ? 'active' : '' }}">
+    <li class="nav-item {{ request()->is('app/candidate*') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('app.candidate.index') }}">
             <i class="fas fa-fw fa-users"></i>
             <span>Dashboard</span></a>
