@@ -39,7 +39,7 @@
                             @foreach ($candidates as $candidate)
                             <tr>
                                 <!-- isi sesuai yg ada pada tabel database -->
-                                <td>{{ $candidate->email }}</td>
+                                <td>{{ $candidate->name }}</td>
                                 <td>{{ $candidate->image }}</td>
                                 <td>{{ $candidate->namaKetua }}</td>
                                 <td>{{ $candidate->namaWakilKetua }}</td>

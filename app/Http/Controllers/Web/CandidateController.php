@@ -15,12 +15,11 @@ class CandidateController extends Controller implements HasMiddleware
 {
     public static function middleware(): array
     {
-        // ini role untuk permision agar role permision nya dapat digunakan
         return [
-            new ControllersMiddleware(PermissionMiddleware::using('user-view'), only: ['index', 'show']),
-            new ControllersMiddleware(PermissionMiddleware::using('user-create'), only: ['create', 'store']),
-            new ControllersMiddleware(PermissionMiddleware::using('user-update'), only: ['edit', 'update']),
-            new ControllersMiddleware(PermissionMiddleware::using('user-delete'), only: ['destroy']),
+            new ControllersMiddleware(PermissionMiddleware::using('candidate-view'), only: ['index', 'show']),
+            new ControllersMiddleware(PermissionMiddleware::using('candidate-create'), only: ['create', 'store']),
+            new ControllersMiddleware(PermissionMiddleware::using('candidate-update'), only: ['edit', 'update']),
+            new ControllersMiddleware(PermissionMiddleware::using('candidate-delete'), only: ['destroy']),
         ];
     }
 
@@ -48,7 +47,7 @@ class CandidateController extends Controller implements HasMiddleware
     public function store(CandidateStoreRequest $request)
     {
         try {
-            Candidate::create([
+            candidate::create([
                 'name' => $request->name,
                 'image' => $request->file('image')->store('candidates', 'public'),
                 'namaKetua' => $request->namaKetua,

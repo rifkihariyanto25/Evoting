@@ -9,7 +9,7 @@ class Candidate extends Model
 {
     use HasFactory;
 
-    protected $filllable = [
+    protected $fillable = [
         'name',
         'image',
         'namaKetua',
