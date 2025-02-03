@@ -17,15 +17,16 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tr>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <td>{{ $candidate->name }}</td>
                         </tr>
 
                         <tr>
                             <th>image</th>
                             <td>
-                                <img src="{{ asset('storage/' . $candidate->image)}}" width="100" alt="Image">
+                                <img src="{{ asset('storage/' . $candidate->image) }}" width="100" alt="{{ $candidate->name }}" class="img-thumbnail">
                             </td>
+
                         </tr>
 
                         <tr>

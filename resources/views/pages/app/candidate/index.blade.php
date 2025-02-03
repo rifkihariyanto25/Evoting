@@ -32,6 +32,7 @@
                                 <th>Visi Calon</th>
                                 <th>Misi Calon</th>
                                 <th>Nomer Urut</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -40,7 +41,10 @@
                             <tr>
                                 <!-- isi sesuai yg ada pada tabel database -->
                                 <td>{{ $candidate->name }}</td>
-                                <td>{{ $candidate->image }}</td>
+                                <td>
+                                    <img src="{{ asset('storage/' . $candidate->image) }}" alt="{{ $candidate->name }}" class="img-thumbnail" width="100">
+
+                                </td>
                                 <td>{{ $candidate->namaKetua }}</td>
                                 <td>{{ $candidate->namaWakilKetua }}</td>
                                 <td>{{ $candidate->visi }}</td>
