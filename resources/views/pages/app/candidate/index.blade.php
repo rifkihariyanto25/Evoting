@@ -26,7 +26,7 @@
                         <thead>
                             <tr>
                                 <th>Nama</th>
-                                <th>Image</th>
+                                <th>Gambar Paslon</th>
                                 <th>Nama Calon Ketua</th>
                                 <th>Nama Calon Wakil Ketua</th>
                                 <th>Visi Calon</th>

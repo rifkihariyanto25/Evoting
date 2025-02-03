@@ -22,7 +22,7 @@
                         </tr>
 
                         <tr>
-                            <th>image</th>
+                            <th>Gambar Paslon</th>
                             <td>
                                 <img src="{{ asset('storage/' . $candidate->image) }}" width="100" alt="{{ $candidate->name }}" class="img-thumbnail">
                             </td>
@@ -30,28 +30,28 @@
                         </tr>
 
                         <tr>
-                            <th>namaKetua</th>
+                            <th>Nama Calon Ketua</th>
                             <td>{{ $candidate->namaKetua }}</td>
                         </tr>
 
                         <tr>
-                            <th>namaWakilKetua</th>
+                            <th>Nama Calon Wakil Ketua</th>
                             <td>{{ $candidate->namaWakilKetua }}</td>
                         </tr>
 
 
                         <tr>
-                            <th>visi</th>
+                            <th>Visi Calon</th>
                             <td>{{ $candidate->visi }}</td>
                         </tr>
 
                         <tr>
-                            <th>misi</th>
+                            <th>Misi Calon</th>
                             <td>{{ $candidate->misi }}</td>
                         </tr>
 
                         <tr>
-                            <th>sort_order</th>
+                            <th>Nomor Urut</th>
                             <td>{{ $candidate->sort_order }}</td>
                         </tr>
 
