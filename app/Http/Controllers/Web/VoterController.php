@@ -72,7 +72,8 @@ class VoterController extends Controller implements HasMiddleware
      */
     public function show(string $id)
     {
-        //
+        $voter = Voter::findOrFail($id);
+        return view('pages.app.voter.show', compact('voter'));
     }
 
     /**
@@ -90,13 +91,15 @@ class VoterController extends Controller implements HasMiddleware
     public function update(VoterUpdateRequest $request, string $id)
     {
         try {
+            // cari voter mana yg mau diupdate
             $voter = Voter::FindOrFail($id);
-
+            // cari relasi user nya
             $voter->user->update([
                 'email' => $request->email,
                 'password' => $request->password ? bcrypt($request->password) : $voter->user->password,
             ]);
 
+            // update untuk namanya
             $voter->update([
                 'name' => $request->name
             ]);
@@ -112,6 +115,14 @@ class VoterController extends Controller implements HasMiddleware
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            // cari voter mana yg mau dihapus
+            $voter = Voter::FindOrFail($id);
+
+            $voter->delete();
+            return redirect()->route('app.voter.index')->with('success', 'Voter Berhasil Dihapus');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Failed to Delete Voter: ' . $e->getMessage()]);
+        }
     }
 }
