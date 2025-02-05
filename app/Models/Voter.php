@@ -20,4 +20,11 @@ class Voter extends Model
     {
         return  $this->belongsTo(User::class);
     }
+
+    // relasi vote
+    public function votes()
+    {
+        // satu voter hanya memiliki 1 vote
+        return  $this->hashOne(Vote::class);
+    }
 }

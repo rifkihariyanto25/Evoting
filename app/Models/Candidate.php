@@ -18,4 +18,12 @@ class Candidate extends Model
         'misi',
         'sort_order',
     ];
+
+
+    // relasi vote
+    public function votes()
+    {
+        // satu candidate bisa memiliki banyak vote
+        return  $this->hashMany(Vote::class);
+    }
 }
