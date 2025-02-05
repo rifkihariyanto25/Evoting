@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VoterStoreRequest;
+use App\Http\Requests\VoterUpdateRequest;
 use App\Models\User;
 use App\Models\Voter;
 use Illuminate\Http\Request;
@@ -79,15 +80,31 @@ class VoterController extends Controller implements HasMiddleware
      */
     public function edit(string $id)
     {
-        //
+        $voter = Voter::findOrFail($id);
+        return view('pages.app.voter.edit', compact('voter'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(VoterUpdateRequest $request, string $id)
     {
-        //
+        try {
+            $voter = Voter::FindOrFail($id);
+
+            $voter->user->update([
+                'email' => $request->email,
+                'password' => $request->password ? bcrypt($request->password) : $voter->user->password,
+            ]);
+
+            $voter->update([
+                'name' => $request->name
+            ]);
+
+            return redirect()->route('app.voter.index')->with('success', 'Voter Berhasil Update');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'Failed to Update Voter: ' . $e->getMessage()]);
+        }
     }
 
     /**
