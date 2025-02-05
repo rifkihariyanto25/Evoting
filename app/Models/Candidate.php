@@ -24,6 +24,6 @@ class Candidate extends Model
     public function votes()
     {
         // satu candidate bisa memiliki banyak vote
-        return  $this->hashMany(Vote::class);
+        return $this->hasMany(Vote::class);
     }
 }

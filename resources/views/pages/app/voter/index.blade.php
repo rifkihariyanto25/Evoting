@@ -28,6 +28,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <!-- <th>NIM</th> -->
+                                <th>Status</th>
                                 <th>Action</th>
 
                             </tr>
@@ -39,6 +40,18 @@
                                 <td>{{ $voter->name }}</td>
                                 <td>{{ $voter->user->email }}</td>
                                 <!-- <td>{{ $voter->nim }}</td> -->
+                                <td>
+                                    @if ($voter->vote)
+                                    <span class="badge bg-success text-white p-2">
+                                        sudah voting
+                                    </span>
+                                    @else
+                                    <span class="badge bg-danger text-white p-2">
+                                        Belum Voting
+                                    </span>
+                                    @endif
+                                </td>
+
                                 <td>
 
                                     @can('voter-update')

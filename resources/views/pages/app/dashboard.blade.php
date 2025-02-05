@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Voting')
 
 @section('content')
 <div class="col-md-12">
@@ -30,7 +30,13 @@
                 <h6>Misi:</h6>
                 <p>{{ $candidate->misi }}</p>
 
-                <a href="" class="btn btn-primary"> vote</a>
+                @if (Auth::user()->voter->vote)
+                <button class="btn btn-primary" disabled>
+                    Sudah Voting
+                </button>
+                @else
+                <a href="{{route('app.vote', $candidate->id)}}" class="btn btn-primary">Vote</a>
+                @endif
             </div>
         </div>
     </div>

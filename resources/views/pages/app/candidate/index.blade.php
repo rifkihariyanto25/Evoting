@@ -32,6 +32,7 @@
                                 <th>Visi Calon</th>
                                 <th>Misi Calon</th>
                                 <th>Nomer Urut</th>
+                                <th>Jumlah Suara</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,6 +51,7 @@
                                 <td>{{ $candidate->visi }}</td>
                                 <td>{{ $candidate->misi }}</td>
                                 <td>{{ $candidate->sort_order }}</td>
+                                <td>{{ $candidate->votes->count() }}</td>
                                 <td>
 
                                     @can('candidate-update')
