@@ -46,4 +46,51 @@
 </div>
 @endcan
 @endrole
+
+@role('admin')
+<div class="row justify-content-center">
+    <div class="col-6">
+        <h2 class="text-center mb-3"> Hasil Voting Real Time</h2>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="pie-results"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@endrole
+@endsection
+
+@section('scripts')
+@role('admin')
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var candidates = @json($candidates->pluck('name'));
+        var votes = @json($candidates->pluck('votes_count'));
+
+        console.log(candidates, votes); // Debugging untuk cek data
+
+        var options = {
+            chart: {
+                type: 'pie',
+                width: '500px'
+            },
+            series: votes,
+            labels: candidates
+        };
+
+        var chart = new ApexCharts(document.querySelector(".pie-results"), options);
+        chart.render();
+    });
+</script>
+
+<script>
+    setTimeout(function() {
+        location.reload();
+    }, 5000);
+</script>
+@endrole
 @endsection

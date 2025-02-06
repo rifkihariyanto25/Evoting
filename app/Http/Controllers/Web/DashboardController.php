@@ -11,7 +11,10 @@ class DashboardController extends Controller
     public function index()
     {
 
-        $candidates = Candidate::orderBy('sort_order', 'asc')->get(); // Menampilkan kandidat berdasarkan urutan yang ditentukan
+        $candidates = Candidate::withCount('votes')  // Menghitung jumlah vote untuk setiap kandidat
+            ->orderBy('sort_order', 'asc') // Urutkan berdasarkan sort_order
+            ->get();
+
         return view('pages.app.dashboard', compact('candidates'));
     }
 
