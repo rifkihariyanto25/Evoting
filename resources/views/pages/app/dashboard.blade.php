@@ -32,10 +32,12 @@
 
                 @if (Auth::user()->voter->vote)
                 <button class="btn btn-primary" disabled>
-                    Sudah Voting
+                    Already Voted
                 </button>
                 @else
-                <a href="{{route('app.vote', $candidate->id)}}" class="btn btn-primary">Vote</a>
+                <a href="{{ route('app.vote', $candidate->id) }}" class="btn btn-primary">
+                    Vote
+                </a>
                 @endif
             </div>
         </div>

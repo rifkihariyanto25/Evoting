@@ -53,7 +53,6 @@
                                 </td>
 
                                 <td>
-
                                     @can('voter-update')
                                     <a href="{{ route('app.voter.edit', $voter->id) }}"
                                         class="btn btn-warning">Edit</a>

@@ -22,9 +22,9 @@ class Voter extends Model
     }
 
     // relasi vote
-    public function votes()
+    public function vote()
     {
         // satu voter hanya memiliki 1 vote
-        return  $this->hashOne(Vote::class);
+        return  $this->hasOne(Vote::class);
     }
 }
