@@ -71,7 +71,12 @@
         var candidates = @json($candidates->pluck('name'));
         var votes = @json($candidates->pluck('votes_count'));
 
-        console.log(candidates, votes); // Debugging untuk cek data
+        // Tambahkan nomor urut ke setiap nama kandidat
+        var numberedCandidates = candidates.map(function(name, index) {
+            return (index + 1) + ". " + name;  // Nomor urut dimulai dari 1
+        });
+
+        console.log(numberedCandidates, votes); // Debug untuk cek hasilnya
 
         var options = {
             chart: {
@@ -79,13 +84,14 @@
                 width: '500px'
             },
             series: votes,
-            labels: candidates
+            labels: numberedCandidates  // Gunakan nama yang sudah diberi nomor
         };
 
         var chart = new ApexCharts(document.querySelector(".pie-results"), options);
         chart.render();
     });
 </script>
+
 
 <script>
     setTimeout(function() {
